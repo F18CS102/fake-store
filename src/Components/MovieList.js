@@ -1,89 +1,70 @@
 import React, { useEffect, useState } from 'react'
 import SearchBar from './SearchBar'
 import MovieCard from './MovieCard'
+import Navbar from './Common/Navbar/Navbar';
+import Footer from './Common/Footer/Footer';
+import './MovieList.css';
 function MovieList() {
     const [san, setSan] = useState([])
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
             .then(res => res.json())
             .then(json => { setSan(json) })
-    })
+    }, []);
     console.log(san);
     return (
-        <> <div className='row'>
-            {san?.map((item) => {
-                return (
-                    <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
-                        <div className="card">
-                            <div className="card-body">
-                                <img style={{ height: '400px' }} src={item.image} className="card-img-top" alt="" />
-                                <h5 style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'clip' }} className="card-text">{item.title}</h5>
-                                <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'clip' }} className="card-text">${item.description}</p>
-                                <p className="card-text">{item.price}</p>
-                                <a style={{ color: 'black' }} href="#" className="btn border">Buy Now</a>
+        <div class="shop_section layout_padding">
+            <div className='container-fluid'>
+                <Navbar />
+                <div className='row'>
+                    {san?.map((item) => {
+                        return (
+                            // <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
+                            //     <div className="card">
+                            //         <div className="card-body">
+                            //             <img style={{ height: '400px' }} src={item.image} className="card-img-top" alt="" />
+                            //             <h5 style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'clip' }} className="card-text">{item.title}</h5>
+                            //             <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'clip' }} className="card-text">${item.description}</p>
+                            //             <p className="card-text">{item.price}</p>
+                            //             <a style={{ color: 'black' }} href="#" className="btn border">Buy Now</a>
+                            //         </div>
+                            //     </div>
+                            // </div>
+
+                            <div className="col-sm-6 col-md-4 col-lg-3">
+                                <div className="box">
+                                    <a href="">
+                                        <div className="img-box">
+                                            <img src={item.image} alt="" style={{ height: '400px' }} />
+                                        </div>
+                                        <div className="detail-box">
+                                            <h6>
+                                                {item.title}
+                                            </h6>
+                                            <h6>
+                                                Price
+                                                <span>
+                                                    {item.price}
+                                                </span>
+                                            </h6>
+                                        </div>
+                                        <div className="new">
+                                            <span>
+                                                New
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                )
-            })}
+
+
+                        )
+                    })}
+                </div>
+                <Footer />
+
+            </div>
         </div>
-            <div style={{ backgroundColor: 'black', backgroundSize: 'cover', backgroundPosition: 'top' }}>
-                <div style={{ marginTop: '80px', textAlign: 'center', height: '40%' }}>
-                    <div style={{ paddingTop: '80px' }}>
-                        <h1>Newsletter</h1>
-                        <br />
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, dolores!</p>
-                        <br />
-                        <input type="email" placeholder="Email Address" style={{ borderRadius: '8px', width: '60%', backgroundColor: 'transparent' }} />
-                        <button style={{ border: '1px', borderRadius: '8px', backgroundColor: 'green', color: 'white' }}>Subscribe</button>
-                        <br />
-                    </div>
-                </div>
-                <div className="row" style={{ justifyContent: 'center' }}>
-                    <div style={{ height: '150px' }} className="col-lg-3 col-md-12 col-sm-12">
-                        <img src="src/img/cms1_1.png" alt="" />
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quis!</p>
-                    </div>
-                    <div style={{ height: '150px' }} className="col-lg-3 col-md-12 col-sm-12">
-                        <img src="src/img/cms1_1.png" alt="" />
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quis!</p>
-                    </div>
-                    <div style={{ height: '150px' }} className="col-lg-3 col-md-12 col-sm-12">
-                        <img src="src/img/cms1_1.png" alt="" />
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quis!</p>
-                    </div>
-                </div>
-                <div className="row">
-                    <div style={{ height: '100px' }} className="col-lg-3 col-md-12 col-sm-12">
-                        <img src="src/img/logo_footer.png" alt="" />
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium, enim!</p>
-                    </div>
-                    <div style={{ height: '200px' }} className="col-lg-3 col-md-12 col-sm-12">
-                        <h1>Products</h1>
-                        <ul>
-                            <li>Strawberry</li>
-                            <li>Strawberry</li>
-                            <li>Strawberry</li>
-                            <li>Strawberry</li>
-                            <li>Strawberry</li>
-                        </ul>
-                    </div>
-                    <div style={{ height: '200px' }} className="col-lg-3 col-md-12 col-sm-12">
-                        <h1>Our Company</h1>
-                        <ul>
-                            <li>Services</li>
-                            <li>Services</li>
-                            <li>Services</li>
-                            <li>Services</li>
-                            <li>Services</li>
-                        </ul>
-                    </div>
-                    <div style={{ height: '150px' }} className="col-lg-3 col-md-12 col-sm-12">
-                        <h1>Follow our Instagram</h1>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                    </div>
-                </div>
-            </div> </>
 
 
         // <div id="shell">
