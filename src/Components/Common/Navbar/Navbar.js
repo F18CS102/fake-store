@@ -58,8 +58,10 @@ function Navbar() {
                     </div>
                 </nav>
             </header>
+
         </div>
     )
+
 }
 
 export default Navbar
